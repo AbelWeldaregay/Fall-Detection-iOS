@@ -14,14 +14,18 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     @IBOutlet weak var emeContact: UITextField!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
-    
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var roleDropDown: UIPickerView!
-    
+    @IBOutlet weak var serviceProvider: UITextField!
     @IBOutlet weak var roleInputField: UITextField!
+    var firstNameInput = "empty"
+    var lastNameInput = "empty"
     var usernameInput = "empty"
     var passwordInput = "empty"
     var emecontactInput = "empty"
     var roleInput = "empty"
+    var serviceProviderInput = "empty"
     var deviceID = UIDevice.current.identifierForVendor!.uuidString
     let roles = ["Admin", "Patient"]
 
@@ -103,7 +107,7 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
  
     @IBAction func createAccountPressed(_ sender: UIButton) {
         
-        if (emeContact.text?.isEmpty)! || (username.text?.isEmpty)! || (password.text?.isEmpty)! || (roleInputField.text?.isEmpty)!
+        if (emeContact.text?.isEmpty)! || (username.text?.isEmpty)! || (password.text?.isEmpty)! || (roleInputField.text?.isEmpty)! || (firstName.text?.isEmpty)! || (lastName.text?.isEmpty)! || (emeContact.text?.isEmpty)! || (serviceProvider.text?.isEmpty)!
    {
         displayAlertMessage(message: "All fields are required.")
    }
@@ -112,6 +116,9 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         self.usernameInput = username.text!
         self.passwordInput = password.text!
         self.emecontactInput = emeContact.text!
+        self.firstNameInput = firstName.text!
+        self.lastNameInput = lastName.text!
+        self.serviceProviderInput = serviceProvider.text!
     
         if roleInputField.text! == "Patient"
         {
@@ -157,7 +164,7 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         
        
 
-        let postString = "username=\(self.usernameInput)&password=\(self.passwordInput)&emecontact=\(self.emecontactInput)&role=\(self.roleInput)&deviceID=\(self.deviceID)"
+        let postString = "username=\(self.usernameInput)&password=\(self.passwordInput)&emecontact=\(self.emecontactInput)&role=\(self.roleInput)&deviceID=\(self.deviceID)&firstname=\(self.firstNameInput)&lastname=\(self.lastNameInput)&serviceProvider=\(self.serviceProviderInput)"
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
