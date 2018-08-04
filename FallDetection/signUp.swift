@@ -28,7 +28,7 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     var serviceProviderInput = "empty"
     var deviceID = UIDevice.current.identifierForVendor!.uuidString
     let roles = ["Admin", "Patient"]
-
+    let serviceProviders = ["Verizon", "T-Mobile", "AT&T", "Sprint"]
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
