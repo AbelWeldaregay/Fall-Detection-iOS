@@ -11,7 +11,9 @@ import AVFoundation
 import AudioToolbox
 
 class FallDetected: UIViewController {
-
+    
+    var player: AVAudioPlayer?
+    
     @IBOutlet weak var counterLabel: UILabel!
     var counter = 10
     var counterTimer : Timer!
@@ -37,20 +39,47 @@ class FallDetected: UIViewController {
         let secondVC = storyBoard.instantiateViewController(withIdentifier: "loggedIn") as! LoggedIn
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
+    
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: "zapsplat_emergency_alarm_siren", withExtension: "mp3") else {
+            print("url not found")
+            return
+        }
+        
+        do {
+            /// this codes for making this app ready to takeover the device audio
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            /// change fileTypeHint according to the type of your audio file (you can omit this)
+            
+            /// for iOS 11 onward, use :
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            /// else :
+            /// player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3)
+            
+            // no need for prepareToPlay because prepareToPlay is happen automatically when calling play()
+            player!.play()
+        } catch let error as NSError {
+            print("error: \(error.localizedDescription)")
+        }
+    }
 
     @objc func runTimedCode() {
         
-        AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
-            // do what you'd like now that the sound has completed playing
-            AudioServicesPlaySystemSound(1304)
-            
-        }
-        
+//        AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
+//            // do what you'd like now that the sound has completed playing
+//            AudioServicesPlaySystemSound(1103)
+//
+//        }
+        playSound()
         counterLabel.text = "\(counter)"
         counter -= 1
 
         if (counter == 0)
         {
+            player?.stop()
             //send the email to eme contact
             counterTimer.invalidate()
             sendEmail()
@@ -60,6 +89,9 @@ class FallDetected: UIViewController {
     }
     
     @IBAction func iAmOkayPressed(_ sender: Any) {
+        
+        player?.stop()
+        
         counterTimer.invalidate()
         
         //self.redirecttoLoggedInView()
