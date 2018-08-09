@@ -14,6 +14,10 @@ import AudioToolbox
 var uname = "empty"
 var role = "empty"
 var emeContact = "empty"
+var serviceProvider = "empty"
+var firstName = "empty"
+var lastName = "empty"
+var phoneNumber = "empty"
 
 class ViewController: UIViewController {
 
@@ -98,6 +102,11 @@ class ViewController: UIViewController {
                     uname = userObject["username"] as! String
                     role = userObject["role_id"] as! String
                     emeContact = userObject["emgycontact"] as! String
+                    serviceProvider = userObject["serviceProvider"] as! String
+                    firstName = userObject["firstname"] as! String
+                    lastName = userObject["lastname"] as! String
+                   
+                    
                     if role == "1"
                     {
                         role = "Admin"
@@ -106,12 +115,8 @@ class ViewController: UIViewController {
                     {
                         role = "Patient"
                     }
-//                    correctName = userObject["name"] as! String
-//                    userRole = userObject["role"] as! String
-//                    userDescription = userObject["description"] as! String
                     
                     self.redirecttoLoggedInView()
-                    //self.performSegue(withIdentifier: "Segue", sender: self)
                     
                     
                 }

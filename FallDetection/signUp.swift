@@ -17,6 +17,8 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var roleDropDown: UIPickerView!
+    
+    @IBOutlet weak var serProviderDropDown: UIPickerView!
     @IBOutlet weak var serviceProvider: UITextField!
     @IBOutlet weak var roleInputField: UITextField!
     var firstNameInput = "empty"
@@ -29,6 +31,7 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     var deviceID = UIDevice.current.identifierForVendor!.uuidString
     let roles = ["Admin", "Patient"]
     let serviceProviders = ["Verizon", "T-Mobile", "AT&T", "Sprint"]
+   
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
@@ -44,20 +47,44 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
             countRow = self.roles.count
         }
         
+        if pickerView == serProviderDropDown
+        {
+            countRow = self.serviceProviders.count
+        }
+        
         return countRow
         
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return roles[row]
+        if pickerView == roleDropDown
+        {
+             return roles[row]
+        }
+        
+        else if pickerView == serProviderDropDown
+        {
+            return serviceProviders[row]
+        }
+        
+        return "pickerView crash"
         
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        self.roleInputField.text = roles[row]
-        self.roleDropDown.isHidden = true
+        if pickerView == roleDropDown
+        {
+            self.roleInputField.text = roles[row]
+            //self.roleDropDown.isHidden = true
+        }
+        else if pickerView == serProviderDropDown
+        {
+            self.serviceProvider.text = serviceProviders[row]
+           // self.serProviderDropDown.isHidden = true
+        }
+     
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -67,6 +94,12 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
             self.roleDropDown.isHidden = false
             roleInputField.resignFirstResponder()
             
+        }
+        
+        if textField == serviceProvider
+        {
+            self.serProviderDropDown.isHidden = false
+            serviceProvider.resignFirstResponder()
         }
         
     }
@@ -89,7 +122,9 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
         
-       
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
+        serviceProvider.resignFirstResponder()
         emeContact.resignFirstResponder()
         username.resignFirstResponder()
         password.resignFirstResponder()
@@ -118,7 +153,23 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
         self.emecontactInput = emeContact.text!
         self.firstNameInput = firstName.text!
         self.lastNameInput = lastName.text!
-        self.serviceProviderInput = serviceProvider.text!
+    
+    switch self.serviceProvider.text! {
+        
+    case "Verizon":
+        self.serviceProviderInput = "vtext.com"
+    case "Sprint":
+        self.serviceProviderInput = "messaging.sprintcs.com"
+    case "T-Mobile":
+        self.serviceProviderInput = "tmomail.net"
+    case "AT&T":
+        self.serviceProviderInput = "txt.att.net"
+        
+    default:
+        "empty service provider"
+    }
+    
+    
     
         if roleInputField.text! == "Patient"
         {
@@ -142,7 +193,6 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
             password.text! = ""
             emeContact.text! = ""
             roleInputField.text! = ""
-            
             performSegue(withIdentifier: "toViewController",
                          sender: self)
         
@@ -155,7 +205,6 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
   
     
     func writeToDataBase(){
-        
         
         let url = URL(string: "http://qav2.cs.odu.edu/abel/FallDetectionScripts/signUp/signUp.php")!
         var request = URLRequest(url: url)
@@ -181,8 +230,6 @@ class signUp: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UI
             print("responseString = \(responseString)")
         }
         task.resume()
-        
-        
         
     }
     

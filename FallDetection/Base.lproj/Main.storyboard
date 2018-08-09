@@ -168,10 +168,17 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gol-Sa-IhD" id="SJK-0s-ctR"/>
+                                </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2X-Ch-TM1">
                                 <rect key="frame" x="16" y="380" width="339" height="62"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="gol-Sa-IhD" id="QLP-uF-Uad"/>
+                                    <outlet property="delegate" destination="gol-Sa-IhD" id="41D-0Q-1ji"/>
+                                </connections>
                             </pickerView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="role" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pO0-ws-M9z">
                                 <rect key="frame" x="20" y="450" width="339" height="30"/>
@@ -194,6 +201,7 @@
                         <outlet property="password" destination="XbK-he-j7t" id="jgB-Ac-oDQ"/>
                         <outlet property="roleDropDown" destination="3jJ-KD-zA0" id="Viu-BN-FpN"/>
                         <outlet property="roleInputField" destination="pO0-ws-M9z" id="BC4-Ci-Dly"/>
+                        <outlet property="serProviderDropDown" destination="I2X-Ch-TM1" id="oPm-ey-5Bc"/>
                         <outlet property="serviceProvider" destination="ezT-uo-wyk" id="uUC-5s-cbD"/>
                         <outlet property="username" destination="d88-qP-zZq" id="A8f-qg-DEJ"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toViewController" id="cTo-H3-XA6"/>

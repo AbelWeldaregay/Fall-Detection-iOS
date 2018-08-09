@@ -22,6 +22,8 @@ class FallDetected: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: true)
         // Do any additional setup after loading the view.
         counterTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        
+     
        
         //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 
@@ -44,7 +46,6 @@ class FallDetected: UIViewController {
             
         }
         
-      
         counterLabel.text = "\(counter)"
         counter -= 1
 
@@ -52,6 +53,8 @@ class FallDetected: UIViewController {
         {
             //send the email to eme contact
             counterTimer.invalidate()
+            sendEmail()
+            
         }
         
     }
@@ -60,6 +63,36 @@ class FallDetected: UIViewController {
         counterTimer.invalidate()
         
         //self.redirecttoLoggedInView()
+    }
+    
+    
+    func sendEmail(){
+        
+        let url = URL(string: "http://qav2.cs.odu.edu/abel/FallDetectionScripts/sendEmail/sendEmail.php")!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        
+        
+        let postString = "firstname=\(firstName)&lastname=\(lastName)&phoneNumber=\(emeContact)&serviceProvider=\(serviceProvider)"
+        request.httpBody = postString.data(using: .utf8)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(error)")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                print("response = \(response)")
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(String(describing: responseString))")
+        }
+        task.resume()
+        
     }
     
     
