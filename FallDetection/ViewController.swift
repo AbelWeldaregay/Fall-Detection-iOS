@@ -37,7 +37,8 @@ class ViewController: UIViewController {
         let backItem = UIBarButtonItem()
         backItem.title = "Sign-In"
         backItem.tintColor = UIColor.white
-        
+        self.usernameInput.text = ""
+        self.passwordInput.text = ""
         navigationItem.backBarButtonItem = backItem
         //*****************************
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -82,7 +83,7 @@ class ViewController: UIViewController {
     
     @IBAction func loginPressed(_ sender: UIButton) {
         
-        var username = usernameInput.text!
+        let username = usernameInput.text!
         let password = passwordInput.text!
         
         if((username.isEmpty) || (password.isEmpty))
@@ -110,13 +111,18 @@ class ViewController: UIViewController {
                     if role == "1"
                     {
                         role = "Admin"
+                        self.displayAlertMessage(message: "Please login using the Admin application.")
+                        self.usernameInput.text = ""
+                        self.passwordInput.text = ""
                     }
                     else if role == "2"
                     {
                         role = "Patient"
+                        
+                          self.redirecttoLoggedInView()
                     }
                     
-                    self.redirecttoLoggedInView()
+                  
                     
                     
                 }

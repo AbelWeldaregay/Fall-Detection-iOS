@@ -10,7 +10,7 @@ import UIKit
 import CoreMotion
 import CoreLocation
 
-class LoggedIn: UIViewController, CLLocationManagerDelegate {
+class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var detectionStatus: UILabel!
     
@@ -20,9 +20,34 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var logOutButton: UIButton!
     
-    @IBOutlet weak var usernameIcon: UILabel!
+    @IBOutlet weak var roundedCornerButton: UIButton!
     
-    @IBOutlet weak var roleIcon: UILabel!
+    @IBOutlet weak var welcomeBar: UILabel!
+    
+    
+    var list = ["temp1", "temp2","temp3", "temp4"]
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return(list.count)
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        
+        cell.textLabel?.text = list[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.contentView.backgroundColor = UIColor.black
+        cell.textLabel?.textColor = UIColor.white
+        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+    }
     
     //*****acceleration labels****************
     @IBOutlet weak var accelX: UILabel!
@@ -46,10 +71,15 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate {
          self.title = "Fall Detection"
             switchButton.isOn = false
         userData.isHidden = true
+        roundedCornerButton.layer.cornerRadius = 4
+        welcomeBar.text = "Welcome " + firstName + "!"
         // Do any additional setup after loading the view.
         
-        usernameIcon.text = uname
-        roleIcon.text = role
+        list[0] = "First Name: " + firstName
+        list[1] = "Last Name : " + lastName
+        list[2] = "Role      : " + role
+        list[3] = "Status    : Normal"
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,7 +115,7 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate {
                     self.accelY.text = "Accel-Y: " + String(format: "%.2f" , myData.acceleration.y)
                     self.accelZ.text = "Accel-Z: " + String(format: "%.2f" , myData.acceleration.z)
                     
-                    if  (abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)) >= 4
+                    if  (abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)) >= 4.0
                     {
                         print ((abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)))
                         self.motionManager.stopAccelerometerUpdates()

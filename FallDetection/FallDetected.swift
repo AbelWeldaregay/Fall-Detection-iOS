@@ -25,20 +25,10 @@ class FallDetected: UIViewController {
         // Do any additional setup after loading the view.
         counterTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         
-     
-       
         //AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 
-        
-        
-        
     }
-    
-    func redirecttoLoggedInView(){
-        let storyBoard = UIStoryboard(name: "FallDetected", bundle: nil)
-        let secondVC = storyBoard.instantiateViewController(withIdentifier: "loggedIn") as! LoggedIn
-        self.navigationController?.pushViewController(secondVC, animated: true)
-    }
+  
     
     func playSound() {
         guard let url = Bundle.main.url(forResource: "zapsplat_emergency_alarm_siren", withExtension: "mp3") else {
@@ -84,8 +74,24 @@ class FallDetected: UIViewController {
             counterTimer.invalidate()
             sendEmail()
             
+            displayAlertMessage(message: "Emergency contact has been successfully notified.")
+            
+            
+            
         }
         
+    }
+    
+    func displayAlertMessage(message: String) {
+        let alertMsg = UIAlertController(title:"Alert", message: message,
+                                         preferredStyle:UIAlertControllerStyle.alert);
+        
+        let confirmAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil );
+        alertMsg.addAction(confirmAction)
+         performSegue(withIdentifier: "LoggedInView", sender: nil)
+        present(alertMsg, animated:true, completion: nil)
+        
+       
     }
     
     @IBAction func iAmOkayPressed(_ sender: Any) {
