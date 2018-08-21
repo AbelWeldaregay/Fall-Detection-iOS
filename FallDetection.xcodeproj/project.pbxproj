@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460889DB212A4C8F00E5D7AA /* ModifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460889DA212A4C8F00E5D7AA /* ModifyView.swift */; };
 		464F769820EA938D00CE93B3 /* signUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F769720EA938D00CE93B3 /* signUp.swift */; };
 		467BDD4D211BD6AB00F46752 /* zapsplat_emergency_alarm_siren.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 467BDD4C211BD6AB00F46752 /* zapsplat_emergency_alarm_siren.mp3 */; };
 		4699B1DA20C3B0A900314A52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699B1D920C3B0A900314A52 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		2FB8FA3C74B50AE74F436F29 /* Pods-FallDetection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FallDetection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FallDetection/Pods-FallDetection.debug.xcconfig"; sourceTree = "<group>"; };
 		44DCC00753F3481B92C06D1B /* Pods-FallDetection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FallDetection.release.xcconfig"; path = "Pods/Target Support Files/Pods-FallDetection/Pods-FallDetection.release.xcconfig"; sourceTree = "<group>"; };
+		460889DA212A4C8F00E5D7AA /* ModifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyView.swift; sourceTree = "<group>"; };
 		464F769720EA938D00CE93B3 /* signUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUp.swift; sourceTree = "<group>"; };
 		467BDD4C211BD6AB00F46752 /* zapsplat_emergency_alarm_siren.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = zapsplat_emergency_alarm_siren.mp3; path = ../../../Downloads/zapsplat_emergency_alarm_siren.mp3; sourceTree = "<group>"; };
 		4699B1D620C3B0A900314A52 /* FallDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FallDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 				4699B1DB20C3B0A900314A52 /* ViewController.swift */,
 				4699B22620C43AD200314A52 /* LoggedIn.swift */,
 				4699B1DD20C3B0A900314A52 /* Main.storyboard */,
+				460889DA212A4C8F00E5D7AA /* ModifyView.swift */,
 				464F769720EA938D00CE93B3 /* signUp.swift */,
 				467BDD4C211BD6AB00F46752 /* zapsplat_emergency_alarm_siren.mp3 */,
 				46B3BA1320C8F55300E120F7 /* FallDetected.swift */,
@@ -348,6 +351,7 @@
 			files = (
 				464F769820EA938D00CE93B3 /* signUp.swift in Sources */,
 				4699B1DC20C3B0A900314A52 /* ViewController.swift in Sources */,
+				460889DB212A4C8F00E5D7AA /* ModifyView.swift in Sources */,
 				4699B22720C43AD200314A52 /* LoggedIn.swift in Sources */,
 				46B3BA1420C8F55300E120F7 /* FallDetected.swift in Sources */,
 				4699B1DA20C3B0A900314A52 /* AppDelegate.swift in Sources */,

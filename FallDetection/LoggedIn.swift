@@ -120,6 +120,9 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
                         print ((abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)))
                         self.motionManager.stopAccelerometerUpdates()
                         self.motionManager.stopGyroUpdates()
+                        
+                        
+                        
                         self.redirecttoLoggedInView()
                         
                     }
