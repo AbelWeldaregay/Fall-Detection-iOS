@@ -74,8 +74,12 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.switchButton.isHidden = false
+        
          self.navigationItem.setHidesBackButton(true, animated: true)
          self.title = "Fall Detection"
+        
             switchButton.isOn = false
         userData.isHidden = true
         roundedCornerButton.layer.cornerRadius = 4
@@ -143,6 +147,7 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
                 
                 if  (abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)) >= 4.0
                 {
+                    self.switchButton.isHidden = true
                     
                     print ((abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)))
                     self.motionManager.stopAccelerometerUpdates()
@@ -152,6 +157,7 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
                     
                     self.iAmOkayLabel.isHidden = false
                     self.iAmOkayButton.isHidden = false
+                    
                     //start the warning timer before confirming a fall
                     self.counterTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.runTimedCode), userInfo: nil, repeats: true)
                     //self.redirecttoLoggedInView()
@@ -201,50 +207,6 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
             }
             
             
-            /*motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-          
-                if let myData = data
-                {
-                    self.accelX.text = "Accel-X: " + String(format: "%.2f" , myData.acceleration.x)
-                    self.accelY.text = "Accel-Y: " + String(format: "%.2f" , myData.acceleration.y)
-                    self.accelZ.text = "Accel-Z: " + String(format: "%.2f" , myData.acceleration.z)
-                    
-                    if  (abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)) >= 4.0
-                    {
-                        
-                        print ((abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)))
-                        self.motionManager.stopAccelerometerUpdates()
-                        self.motionManager.stopGyroUpdates()
-                        
-                        self.userData.isHidden = true
-                        
-                        self.iAmOkayLabel.isHidden = false
-                        self.iAmOkayButton.isHidden = false
-                        //start the warning timer before confirming a fall
-                        self.counterTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.runTimedCode), userInfo: nil, repeats: true)
-                        //self.redirecttoLoggedInView()
-                        
-                    }
-                    
-                }
-                
-            } //end of motionmanager.startAcc*/
-           
-            
-//            motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
-//
-//                if let myDataGyro = data
-//                {
-//                    self.gyroX.text = "Gyro-X: " + String(format: "%.2f" , myDataGyro.rotationRate.x)
-//                    self.gyroY.text = "Gyro-Y: " + String(format: "%.2f" ,  myDataGyro.rotationRate.y)
-//                    self.gyroZ.text = "Gyro-Z: " + String(format: "%.2f" , myDataGyro.rotationRate.z)
-//
-//                }
-//
-//            } //end of motionmanager.startAcc
-            
-            
-            
         }
         else if (sender.isOn == false){
             userData.isHidden = true
@@ -263,6 +225,7 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
     @IBAction func iAmOkayPressed(_ sender: Any) {
         self.iAmOkayLabel.text = "10"
         self.counter = 10
+        self.switchButton.isHidden = false
         iAmOkayIndicator = false
         counterTimer.invalidate()
         iAmOkayButton.isHidden = true

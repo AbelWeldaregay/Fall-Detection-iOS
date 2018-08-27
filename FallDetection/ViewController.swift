@@ -34,12 +34,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //*****************************
+       
         let backItem = UIBarButtonItem()
         backItem.title = "Sign-In"
         backItem.tintColor = UIColor.white
         self.usernameInput.text = ""
         self.passwordInput.text = ""
         navigationItem.backBarButtonItem = backItem
+        
         //*****************************
         self.navigationItem.setHidesBackButton(true, animated: true)
         
@@ -121,9 +123,7 @@ class ViewController: UIViewController {
                         
                           self.redirecttoLoggedInView()
                     }
-                    
-                  
-                    
+            
                     
                 }
                 else {
