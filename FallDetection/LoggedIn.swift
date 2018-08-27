@@ -145,8 +145,9 @@ class LoggedIn: UIViewController, CLLocationManagerDelegate, UITableViewDelegate
                 self.accelY.text = "Accel-Y: " + String(format: "%.2f" , myData.acceleration.y)
                 self.accelZ.text = "Accel-Z: " + String(format: "%.2f" , myData.acceleration.z)
                 
-                if  (abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)) >= 4.0
+                if  (abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)) >= 6.25
                 {
+                    
                     self.switchButton.isHidden = true
                     
                     print ((abs(myData.acceleration.x) + abs(myData.acceleration.y) + abs(myData.acceleration.z)))

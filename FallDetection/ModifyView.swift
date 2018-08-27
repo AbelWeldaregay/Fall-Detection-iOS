@@ -12,7 +12,8 @@ var myIndex = 0
 class ModifyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var list = ["First Name", "Last Name", "Username", "Emergency Contact", "password", "rolename"]
-    
+    var oldPassord = "empty"
+    var newPassword = "empty"
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,31 +58,65 @@ class ModifyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    func showInputDialog() {
+        //Creating UIAlertController and
+        //Setting title and message for the alert dialog
+        let alertController = UIAlertController(title: "Alert", message: "Enter Password details", preferredStyle: .alert)
+        
+        //the confirm action taking the inputs
+        let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            
+            //getting the input values from user
+            self.oldPassord = (alertController.textFields?[0].text)!
+            self.newPassword = (alertController.textFields?[1].text)!
+            
+                
+            if pass != self.oldPassord
+            {
+                self.displayAlertMessage(message: "Old password does not match our record. Please try again.")
+            }
+            else if pass == self.newPassword
+            {
+                self.displayAlertMessage(message: "Old password and new password cannot be the same. Please try again.")
+            }
+            else
+            {
+                self.updateDataBase(oldValue: self.oldPassord, newValue: self.newPassword, updateField: "password")
+                self.displayAlertMessage(message: "Password updated successfully.")
+            }
+          
+            
+        }
+        
+        //the cancel action doing nothing
+        // let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        //adding textfields to our dialog box
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Old Password"
+        }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "New Password"
+            
+        }
+        
+        
+        //adding the action to dialogbox
+        alertController.addAction(confirmAction)
+        //alertController.addAction(cancelAction)
+        
+        //finally presenting the dialog box
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     func updateUserInfo(updateField : String)
     {
  
-        if updateField == "password"
+        if updateField == "Password"
         {
-            
-            let alert = UIAlertController(title: "Password", message: "", preferredStyle: UIAlertControllerStyle.alert)
-            
-            let action = UIAlertAction(title: "Update", style: .default) { (alertAction) in
-            let textField = alert.textFields![0] as UITextField
-            let textField2 = alert.textFields![1] as UITextField
-            
-            let oldPassword = alert.textFields![0].text as! String
-            let newPassword = alert.textFields![1].text as! String
-            
-            self.updateDataBase(oldValue: oldPassword, newValue: newPassword, updateField: updateField)
-          
-            }
-            
-            alert.addTextField { (textField) in
-                textField.placeholder = "Enter old Password"
-            }
-            
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            self.showInputDialog()
             
         }
         else
@@ -96,17 +131,17 @@ class ModifyView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 switch updateField {
                 case "firstName":
                     self.updateDataBase(oldValue: firstName, newValue: answer, updateField: updateField)
-                    self.list[0] = "First Name: " + answer
+                    self.list[0] = "First Name : " + answer
                 case "lastName":
                     self.updateDataBase(oldValue: lastName, newValue: answer, updateField: updateField)
-                    self.list[1] = "Last Name : " + answer
+                    self.list[1] = "Last Name  : " + answer
                 case "userName":
                     self.updateDataBase(oldValue: uname, newValue: answer, updateField: updateField)
                      self.list[2] = "Username  : " + answer
                 case "EmergencyContact":
                     self.updateDataBase(oldValue: emeContact, newValue: answer, updateField: "emgycontact")
-                    self.list[3] = "Emerg Cont: " + answer
-        
+                    self.list[3] = "Emerg Cont : " + answer
+                
                 default:
                     print ("noting selected")
                 }

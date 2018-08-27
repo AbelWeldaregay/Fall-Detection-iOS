@@ -18,6 +18,7 @@ var serviceProvider = "empty"
 var firstName = "empty"
 var lastName = "empty"
 var phoneNumber = "empty"
+var pass = "empty"
 
 class ViewController: UIViewController {
 
@@ -108,7 +109,7 @@ class ViewController: UIViewController {
                     serviceProvider = userObject["serviceProvider"] as! String
                     firstName = userObject["firstname"] as! String
                     lastName = userObject["lastname"] as! String
-                   
+                    pass = userObject["password"] as! String
                     
                     if role == "1"
                     {
