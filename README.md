@@ -8,18 +8,18 @@ It uses the 3-axes of acceleartion and gyroscope to monitor the user's movement 
 
 ## Screenshots
 <p float="left">
-<img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.13.38%20AM.png?raw=true" width=250 height= 400>
+<img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.13.38%20AM.png?raw=true" width=225 height= 400>
   &nbsp
-<img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.14.00%20AM.png?raw=true" width=250 height= 400>
+<img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.14.00%20AM.png?raw=true" width=225 height= 400>
  &nbsp
-<img src= "https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.14.27%20AM.png?raw=true" width=250 height=400>
+<img src= "https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.14.27%20AM.png?raw=true" width=225 height=400>
 </p>
 <p float="left">
-<img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.15.20%20AM.png?raw=true" width=250 height=400>
+<img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.15.20%20AM.png?raw=true" width=225 height=400>
    &nbsp
- <img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.16.51%20AM.png?raw=true" width=250 height=400>
+ <img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.16.51%20AM.png?raw=true" width=225 height=400>
   &nbsp
- <img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.17.42%20AM.png?raw=true" width=250 height=400>
+ <img src="https://github.com/AbelWeldaregay/Fall-Detection-iOS/blob/master/Screen%20Shot%202020-03-01%20at%2012.17.42%20AM.png?raw=true" width=225 height=400>
 </p>
 
 
