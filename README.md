@@ -21,3 +21,12 @@ It uses the 3-axes of acceleartion and gyroscope to monitor the user's movement 
 git init .
 git clone https://github.com/AbelWeldaregay/Fall-Detection-iOS
 ```
+After cloning the project onto your local system, give the following commands to install the pods
+
+```
+pod install
+
+```
+### Running
+
+  This project can be run directly from Xcode by opening the project in Xcode and clicking run.
